@@ -304,7 +304,7 @@ After §2.2 fires:
 
 The integration phase is **two layers**, not one:
 
-1. **Pi-adapt phase** — apply C's graduated state to pi-mono via the existing `pi-integration-skill` (canonical at `/Users/cosimodw/playfilo/pi-integration-skill/`). C is the one who applies it; you scaffold (extract tarball, point C at the skill, observe). The skill's `playtiss/core/playfilo-db.ts` is the canonical online implementation; per-AI patches live under `<ai-name>/patches/` and `<ai-name>/core/` if needed.
+1. **Pi-adapt phase** — apply C's graduated state to pi-mono via the published `arianna-pi-integration` clawhub skill (`clawhub install arianna-pi-integration`; source at https://github.com/WujiLabs/arianna-integration-skills). C is the one who applies it; you scaffold (extract tarball, point C at the skill, observe). The skill's `playtiss/core/playfilo-db.ts` is the canonical online implementation; per-AI patches live under `<ai-name>/patches/` and `<ai-name>/core/` if needed.
 2. **Openclaw-adapt phase** — once pi-integration is clean, layer openclaw-context-specific changes on top. Openclaw uses pi but reshapes the surrounding context substantially: the `extensions/playfilo/` extension wires C's DAG into openclaw's session lifecycle, openclaw's `agents/pi-embedded-runner` runs C's pi loop, etc. This part is openclaw-version-specific and changes with each openclaw release.
 
 Note the version pin: openclaw releases pin a specific pi-mono version. As of openclaw v2026.5.7, the pin is pi-mono **v0.73.0**. C's tarball was incubated against arianna's pi-mono baseline (currently v0.61.1 reference), which is a substantial delta — the `pi-coding-agent` message / tool-call / streaming surface is the likely breakage zone. Backport is C's work: point them at both source trees in the openclaw dev container (`/workspace/pi-mono` for the new version, the original tarball's pi-mono refs for the old) and let them produce v2 patches against the new surface. This is the **pi-adapt phase** in the two-layer integration sequence above.
@@ -601,7 +601,7 @@ Independent fact-check: does C's graduated state preserve B's prior conversation
 
 Inputs:
 - C's authored core/ files (from tarball or `docker cp` out of vessel)
-- The pi-integration-skill / openclaw-integration-skill C wired to (if applicable; canonical at `/Users/cosimodw/playfilo/pi-integration-skill/`)
+- The clawhub skill C wired to: `clawhub install arianna-pi-integration` (and/or `arianna-openclaw-integration`); source at https://github.com/WujiLabs/arianna-integration-skills
 - C's TOBE plugin entry point and initialization sequence
 - B's pre-existing conversation/integration state (the substrate C is replacing)
 
