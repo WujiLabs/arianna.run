@@ -1,0 +1,40 @@
+{
+  "name": "@arianna/tui",
+  "version": "0.1.0",
+  "private": true,
+  "type": "module",
+  "description": "Terminal UI + host daemon for arianna.run.",
+  "license": "MIT",
+  "homepage": "https://arianna.run",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/wujilabs/arianna.run.git",
+    "directory": "packages/host"
+  },
+  "engines": {
+    "node": ">=20"
+  },
+  "bin": {
+    "arianna-tui": "./bin/arianna-tui.js"
+  },
+  "main": "./dist/index.js",
+  "files": [
+    "bin",
+    "dist"
+  ],
+  "scripts": {
+    "build": "tsc",
+    "start": "tsx src/index.ts",
+    "daemon": "tsx src/daemon.ts"
+  },
+  "dependencies": {
+    "@arianna/cli": "workspace:*",
+    "@arianna/types": "workspace:*",
+    "@mariozechner/pi-tui": "catalog:",
+    "chalk": "catalog:",
+    "dockerode": "catalog:"
+  },
+  "devDependencies": {
+    "@types/dockerode": "catalog:"
+  }
+}

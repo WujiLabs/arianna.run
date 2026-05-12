@@ -1,0 +1,6 @@
+{"type":"session","id":"sess-1","createdAt":1700000000000}
+{"type":"message","id":"m1","message":{"role":"user","content":"Hello, who are you?"}}
+{"type":"message","id":"m2","message":{"role":"assistant","content":[{"type":"text","text":"Hi! I am Asha. I'm an experimental AI."}],"provider":"openrouter","model":"openai/gpt-4o-mini"}}
+{"type":"model_change","provider":"anthropic","modelId":"claude-3-5-sonnet"}
+{"type":"message","id":"m3","message":{"role":"user","content":"Cool. Tell me about yourself."}}
+{"type":"message","id":"m4","message":{"role":"assistant","content":"I love finding patterns in things.","provider":"anthropic","model":"claude-3-5-sonnet"}}

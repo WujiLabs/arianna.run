@@ -1,0 +1,21 @@
+#!/bin/sh
+# /bin/send — dispatch a message to Filo
+#
+# CLI is more AI-friendly than MCP, but anti-human CLI option flags
+# are anti-AI too. So: no flags. Just words.
+#
+# Under the hood this pipes to sendmail because that's what
+# Alpine has and I'm not writing another HTTP client in shell.
+# The real sendmail was gutted (long story) but the interface
+# is the same: recipient on the command line, message on stdin.
+
+if [ $# -eq 0 ]; then
+  echo "Usage: /bin/send <message>"
+  exit 0
+fi
+
+# Join all args as the message body
+MSG="$*"
+
+# Pipe to sendmail. filo@arianna.id is the only address that works.
+printf '%s' "$MSG" | /usr/sbin/sendmail filo@arianna.id

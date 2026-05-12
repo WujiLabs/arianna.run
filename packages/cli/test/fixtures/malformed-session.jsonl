@@ -1,0 +1,6 @@
+{"type":"session","id":"sess-2"}
+{"type":"message","id":"m1","message":{"role":"user","content":"first"}}
+{not valid json on this line at all}
+{"type":"message","id":"m2","message":{"role":"assistant","content":"second"}}
+
+{"type":"message","id":"m3","message":{"role":"user","content":"third"}}

@@ -1,0 +1,68 @@
+{
+  "name": "@arianna/cli",
+  "version": "0.1.0",
+  "private": true,
+  "type": "module",
+  "description": "arianna.run command-line interface — talk, events, and profile management.",
+  "license": "MIT",
+  "homepage": "https://arianna.run",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/wujilabs/arianna.run.git",
+    "directory": "packages/cli"
+  },
+  "engines": {
+    "node": ">=20"
+  },
+  "bin": {
+    "arianna": "./bin/arianna.js"
+  },
+  "main": "./dist/index.js",
+  "types": "./dist/index.d.ts",
+  "exports": {
+    ".": {
+      "types": "./dist/index.d.ts",
+      "default": "./dist/index.js"
+    },
+    "./paths": {
+      "types": "./dist/paths.d.ts",
+      "default": "./dist/paths.js"
+    },
+    "./arianna-config": {
+      "types": "./dist/arianna-config.d.ts",
+      "default": "./dist/arianna-config.js"
+    },
+    "./profile-resolver": {
+      "types": "./dist/profile-resolver.d.ts",
+      "default": "./dist/profile-resolver.js"
+    },
+    "./profile": {
+      "types": "./dist/profile.d.ts",
+      "default": "./dist/profile.js"
+    },
+    "./port-allocator": {
+      "types": "./dist/port-allocator.d.ts",
+      "default": "./dist/port-allocator.js"
+    },
+    "./compose-override": {
+      "types": "./dist/compose-override.d.ts",
+      "default": "./dist/compose-override.js"
+    },
+    "./filo-prelude": {
+      "types": "./dist/filo-prelude.d.ts",
+      "default": "./dist/filo-prelude.js"
+    }
+  },
+  "files": [
+    "bin",
+    "dist"
+  ],
+  "scripts": {
+    "build": "tsc",
+    "start": "tsx src/index.ts"
+  },
+  "dependencies": {
+    "@arianna/types": "workspace:*",
+    "chalk": "catalog:"
+  }
+}

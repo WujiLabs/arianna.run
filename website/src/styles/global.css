@@ -1,0 +1,91 @@
+/* arianna.run — dark terminal theme */
+
+:root {
+  --space-unit: 8px;
+  --content-width: 640px;
+
+  /* Base — warmed near-black, easier on OLED than pure #000 */
+  --bg: #0a0a0a;
+  --bg-elevated: #121212;
+
+  /* Primary text — CRT amber, slightly muted for readability */
+  --text: #f4b942;
+  --text-bright: #ffcf6a;
+  --text-dim: #b08a35;
+  --text-faint: #6f5b2a;
+
+  /* Accent — phosphor green-cyan, cool contrast to warm amber */
+  --link: #7adfb5;
+  --link-hover: #a8f0d0;
+
+  /* Reserved warning / CTA */
+  --accent-red: #d96a5a;
+
+  /* Borders / rules */
+  --rule: #2a2418;
+  --rule-bright: #3d3320;
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html {
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  background: var(--bg);
+}
+
+body {
+  font-family: ui-monospace, 'JetBrains Mono', 'SF Mono', 'Menlo',
+    'Consolas', 'Liberation Mono', monospace;
+  font-size: 15px;
+  line-height: 1.7;
+  background: var(--bg);
+  color: var(--text);
+  font-variant-ligatures: none;
+  font-feature-settings: 'liga' 0;
+}
+
+a {
+  color: var(--link);
+  text-decoration: none;
+  border-bottom: 1px dotted var(--link);
+  padding-bottom: 1px;
+  transition: color 120ms ease, border-color 120ms ease;
+}
+
+a:hover,
+a:focus-visible {
+  color: var(--link-hover);
+  border-bottom-color: var(--link-hover);
+  border-bottom-style: solid;
+}
+
+a:focus-visible {
+  outline: 1px dotted var(--link-hover);
+  outline-offset: 3px;
+}
+
+::selection {
+  background: var(--text);
+  color: var(--bg);
+}
+
+strong, b {
+  color: var(--text-bright);
+  font-weight: 600;
+}
+
+em, i {
+  color: var(--text-dim);
+  font-style: italic;
+}
+
+hr {
+  border: none;
+  border-top: 1px dashed var(--rule);
+  margin: calc(var(--space-unit) * 6) 0;
+}

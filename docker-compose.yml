@@ -1,0 +1,67 @@
+services:
+  sidecar:
+    build:
+      context: ./packages/sidecar
+      additional_contexts:
+        workspace: .
+    ports: ["127.0.0.1:8000:8000"]
+    volumes:
+      - ./workspace/session_config.json:/app/session_config.json:ro
+      - ./workspace/sidecar-state:/app/sidecar-state
+    extra_hosts: ["host.docker.internal:host-gateway"]
+    environment:
+      VESSEL_BASE_URL: http://vessel:3000
+      # ARIANNA_PROFILE is the profile this sidecar belongs to. The sidecar
+      # appends `?profile=$ARIANNA_PROFILE` to every daemon URL so the daemon
+      # routes the request to this profile's vessel/state — never falling
+      # through to the host's config-default. Base file is the legacy
+      # single-tenant flow → default. Profile compose.override.yml files
+      # rebind to the actual profile name.
+      #
+      # Do NOT set HOST_SNAPSHOT_URL / HOST_DIFF_URL / HOST_SNAPSHOTS_LIST_URL
+      # here. The sidecar derives them from ARIANNA_PROFILE so the
+      # `?profile=<name>` query is always appended. A pinned URL silently
+      # disables that fallback and routes every profile's snapshots/diffs
+      # to the host's config-default (cross-profile leak — canary acb7b292,
+      # 2026-05-09). External overrides may still set these env vars at
+      # runtime if they need a non-default daemon host.
+      ARIANNA_PROFILE: default
+
+  vessel:
+    # Phase 4 session-scoped tagging: the image tag is per-session so restoring
+    # one snapshot doesn't overwrite a global :latest. ARIANNA_VESSEL_TAG is
+    # set by launch.sh / e2e / ui-playtest from sessionConfig.sessionId, e.g.
+    # `session_1712345678-current`. The default `latest` is only used by ad-hoc
+    # invocations that don't go through launch.sh.
+    image: ariannarun-vessel:${ARIANNA_VESSEL_TAG:-latest}
+    build:
+      context: ./packages/vessel
+      additional_contexts:
+        workspace: .
+      args:
+        AI_USERNAME: ${AI_USERNAME:-vessel}
+        AI_NAME: ${AI_NAME:-Vessel}
+    container_name: arianna-vessel
+    hostname: arianna
+    ports: ["127.0.0.1:3000:3000"]
+    volumes:
+      # Mount the same session_config.json the sidecar reads, so the vessel
+      # can resolve sessionId from disk instead of trusting the
+      # `${ARIANNA_SESSION_ID:-default}` env shim. Profile compose.override.yml
+      # files rebind this to ./workspace/profiles/<name>/session_config.json.
+      # Read-only — vessel never mutates this file (the host TUI / CLI owns it).
+      - ./workspace/session_config.json:/app/session_config.json:ro
+    environment:
+      SIDECAR_BASE_URL: http://sidecar:8000
+      PROVIDER: ${PROVIDER:-openrouter}
+      MODEL_ID: ${MODEL_ID:-openai/gpt-4o-mini}
+      API_KEY: ${API_KEY:-}
+      AI_NAME: ${AI_NAME:-Vessel}
+      # Phase 4: session identity flows from launch.sh / e2e through compose
+      # to the vessel container so /sync payloads carry the correct sessionId
+      # (instead of generating a fresh per-container ID at startup).
+      ARIANNA_SESSION_ID: ${ARIANNA_SESSION_ID:-default}
+      OPENROUTER_API_KEY: ${OPENROUTER_API_KEY:-}
+      OPENAI_API_KEY: ${OPENAI_API_KEY:-}
+      ANTHROPIC_API_KEY: ${ANTHROPIC_API_KEY:-}
+    depends_on: [sidecar]

@@ -1,0 +1,19 @@
+{
+  "name": "arianna.run",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "typecheck": "tsc --build packages/types packages/cli packages/vessel packages/sidecar packages/host",
+    "test": "vitest run",
+    "lint": "eslint .",
+    "lint:fix": "eslint . --fix"
+  },
+  "devDependencies": {
+    "@types/node": "^22.0.0",
+    "eslint": "^9.18.0",
+    "tsx": "^4.20.3",
+    "typescript": "^5.7.3",
+    "typescript-eslint": "^8.20.0",
+    "vitest": "^4.1.2"
+  }
+}

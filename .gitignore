@@ -1,0 +1,39 @@
+node_modules/
+dist/
+*.tsbuildinfo
+.env
+testplay.env
+.gstack/
+
+# macOS Finder metadata
+.DS_Store
+
+# Runtime workspace — local-only generated state. Holds the legacy default
+# profile's session_config.json / sidecar-state / snapshots, all per-profile
+# directories under workspace/profiles/{name}/, and any one-off test artifacts
+# (backups, import dumps, event cursors, .tui-test-backup variants). Nothing
+# in workspace/ is checked into git.
+/workspace/
+
+# Playtest local state
+test/.playtest-transcript.md
+test/.playtest-state.json
+packages/host/workspace/
+
+# Claude Code local settings
+.claude/settings.local.json
+.claude/scheduled_tasks.lock
+
+# Chat history with the AI
+talks/
+# pnpm pack tarballs
+arianna-*.tgz
+*-arianna.tgz
+
+# Python bytecode (from scripts/*.py tests)
+__pycache__/
+*.pyc
+
+# Spoiler-sensitive content — kept local, not published
+materials/
+archive/launch/

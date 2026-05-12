@@ -1,0 +1,20 @@
+{
+  "name": "@arianna/sidecar",
+  "version": "0.1.0",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "build": "tsc",
+    "start": "node --import tsx/esm src/index.ts"
+  },
+  "dependencies": {
+    "@arianna/types": "workspace:*",
+    "@mariozechner/pi-ai": "catalog:",
+    "better-sqlite3": "catalog:",
+    "express": "catalog:"
+  },
+  "devDependencies": {
+    "@types/better-sqlite3": "catalog:",
+    "@types/express": "catalog:"
+  }
+}
