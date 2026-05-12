@@ -205,9 +205,8 @@ terminal, which calls `docker compose up` internally), then run `http`.
 
 ## What we know works (master HEAD post-Stream-A merge, 2026-05-07)
 
-- **OpenClaw is installed** at `/Users/cosimodw/Library/pnpm/openclaw`
-  (version 2026.3.24). `openclaw doctor` reports healthy gateway, agents,
-  and 16 eligible skills.
+- **OpenClaw is installed** (version 2026.3.24). `openclaw doctor`
+  reports healthy gateway, agents, and 16 eligible skills.
 - **OpenClaw produces compliant JSONL.** A real 116-message session
   (`2784984b-df9a-...jsonl`, 257 KB) parses cleanly through
   `packages/host/src/import.ts` (now in `@arianna.run/tui`):

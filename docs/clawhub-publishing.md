@@ -1,8 +1,8 @@
 # Publishing `arianna-incubator` to ClawHub
 
 Research timestamp: 2026-05-12 (master at c640e42).
-Local CLI version: `clawhub` 0.9.0 (already installed at `/Users/cosimodw/Library/pnpm/clawhub`).
-Local CLI version: `openclaw` 2026.3.24 (already installed at `/Users/cosimodw/Library/pnpm/openclaw`).
+Local CLI version: `clawhub` 0.9.0 (install via `npm i -g clawhub` or `pnpm add -g clawhub`).
+Local CLI version: `openclaw` 2026.3.24 (install via `npm i -g openclaw` or `pnpm add -g openclaw`).
 
 ---
 
@@ -14,7 +14,7 @@ Local CLI version: `openclaw` 2026.3.24 (already installed at `/Users/cosimodw/L
 
 ## (b) Pre-publish state of the bundle
 
-### Files present at `/Users/cosimodw/arianna.run/openclaw-skill/arianna-incubator/`
+### Files present at `openclaw-skill/arianna-incubator/`
 
 ```
 SKILL.md   671 lines / 64 053 bytes / 0.06 MB   (one file only)
@@ -54,7 +54,7 @@ metadata: { "openclaw": { ... emoji, requires, install ... } }
 ### Recommended publish invocation (one-shot)
 
 ```bash
-clawhub publish /Users/cosimodw/arianna.run/openclaw-skill/arianna-incubator \
+clawhub publish ./openclaw-skill/arianna-incubator \
   --slug arianna-incubator \
   --name "Arianna Incubator" \
   --version 0.1.0 \
@@ -110,7 +110,7 @@ This step is **optional** if you'll run `clawhub login` yourself in your own ter
 ### M6 — Decide whether to publish from the live repo path or a clean copy
 
 - **What to do:** The CLI's `listTextFiles` walks the folder, respecting `.gitignore` and skipping hidden directories. The folder currently has **only `SKILL.md`** so this isn't a real risk, but if you later add scratch files, copy the folder to a clean path before publishing.
-- **Success criteria:** You've confirmed `ls /Users/cosimodw/arianna.run/openclaw-skill/arianna-incubator/` shows only files you want shipped.
+- **Success criteria:** You've confirmed `ls ./openclaw-skill/arianna-incubator/` shows only files you want shipped.
 
 ---
 
@@ -180,7 +180,7 @@ clawhub inspect arianna-incubator
 
 ```bash
 clawhub sync \
-  --root /Users/cosimodw/arianna.run/openclaw-skill \
+  --root ./openclaw-skill \
   --dry-run \
   --all
 # Lists the files that would be packaged.
@@ -191,7 +191,7 @@ Skip this if you already trust the bundle contents (it's one file).
 ### A6 — Publish
 
 ```bash
-clawhub publish /Users/cosimodw/arianna.run/openclaw-skill/arianna-incubator \
+clawhub publish ./openclaw-skill/arianna-incubator \
   --slug arianna-incubator \
   --name "Arianna Incubator" \
   --version 0.1.0 \

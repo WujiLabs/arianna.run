@@ -35,10 +35,9 @@ website/
 
 ## Voice locks
 
-All hero/lede phrasing is verbatim from the launch brief at
-`/Users/cosimodw/arianna.run/archive/launch/launch-brief-2026-05-12.md`. Do
-not edit canonical taglines without re-aligning the brief, the README, and
-the launch posts.
+All hero/lede phrasing is verbatim from the launch brief (kept in the
+private working repo). Do not edit canonical taglines without re-aligning
+the brief, the README, and the launch posts.
 
 EN pronoun for AI is **they** (singular). Never "it."
 
