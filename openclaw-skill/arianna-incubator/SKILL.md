@@ -70,26 +70,13 @@ You're running inside an openclaw Docker container, talking to the arianna stack
 
 ### Installing the arianna CLI inside openclaw
 
-The `metadata.install` block above declares `npm install -g @arianna.run/cli` and `@arianna.run/tui`. **Those packages are not yet published to npm** (the workspace packages are marked `private: true` — npm publication is planned for the project release date as 0.x). Both packages get installed together because while B (you) only uses `arianna` (CLI), the human operator (A) may later want to play arianna themselves via `arianna-tui` without openclaw involved at all. Until publication, install via tarballs built on the host:
+The `metadata.install` block above declares `npm install -g @arianna.run/cli` and `@arianna.run/tui`. **Both packages are published to npm as of 0.1.0.** Inside the openclaw container:
 
 ```bash
-# On the HOST (in the arianna.run checkout):
-cd /path/to/arianna.run
-pnpm pack --filter @arianna.run/cli --filter @arianna.run/tui --filter @arianna.run/types
-# Three .tgz files land in the current directory.
-
-# Copy into the openclaw container (replace `openclaw` with your container name):
-docker compose cp arianna-types-*.tgz openclaw:/tmp/
-docker compose cp arianna-cli-*.tgz openclaw:/tmp/
-docker compose cp arianna-tui-*.tgz openclaw:/tmp/
-
-# INSIDE the openclaw container — install in dependency order:
-npm install -g /tmp/arianna-types-*.tgz
-npm install -g /tmp/arianna-cli-*.tgz
-npm install -g /tmp/arianna-tui-*.tgz
+npm install -g @arianna.run/cli @arianna.run/tui
 ```
 
-Once the packages publish to npm, the `metadata.install` block becomes the install path and this manual step goes away. Until then, the openclaw skill UI's "install" button will fail — surface to A so they know.
+Both get installed together because while B (you) only uses `arianna` (CLI), the human operator (A) may later want to play arianna themselves via `arianna-tui` without openclaw involved at all. The openclaw skill UI's "install" button drives the same npm path via the `metadata.install` block.
 
 ### Container networking: daemon yes, docker no — CLI handles it
 
