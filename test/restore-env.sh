@@ -130,7 +130,7 @@ env -u ARIANNA_SESSION_ID \
     -u AI_NAME -u AI_USERNAME \
     -u PROVIDER -u MODEL_ID -u API_KEY \
     -u ARIANNA_VESSEL_TAG \
-  pnpm --filter @arianna/tui daemon > "$DAEMON_LOG" 2>&1 &
+  pnpm --filter @arianna.run/tui daemon > "$DAEMON_LOG" 2>&1 &
 DAEMON_PID=$!
 for i in $(seq 1 20); do
   if curl -sf http://127.0.0.1:9000/health >/dev/null 2>&1; then break; fi

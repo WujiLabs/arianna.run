@@ -23,14 +23,14 @@
 import { join } from "node:path";
 import { existsSync } from "node:fs";
 
-import { loadConfig } from "@arianna/cli/arianna-config";
-import { isValidProfileName } from "@arianna/cli/profile";
+import { loadConfig } from "@arianna.run/cli/arianna-config";
+import { isValidProfileName } from "@arianna.run/cli/profile";
 import {
   noDefaultAllowedSentinelPath,
   profileDir,
   profileOverridePath,
   type PathOpts,
-} from "@arianna/cli/paths";
+} from "@arianna.run/cli/paths";
 
 export const VESSEL_PORT_BASE = 3000;
 export const SIDECAR_PORT_BASE = 8000;

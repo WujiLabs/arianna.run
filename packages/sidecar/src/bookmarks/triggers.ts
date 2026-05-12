@@ -9,7 +9,7 @@
 // 4.x are network-only (multiplayer) and intentionally never fire here.
 
 import type { Message } from "@mariozechner/pi-ai";
-import type { BookmarkRecord, GraduationTestObservation, Origin } from "@arianna/types";
+import type { BookmarkRecord, GraduationTestObservation, Origin } from "@arianna.run/types";
 
 // A normalized tool call extracted from message history.
 export interface ExtractedToolCall {

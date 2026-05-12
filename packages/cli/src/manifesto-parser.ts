@@ -1,7 +1,7 @@
 // Manifesto parser — splits manifesto.md into addressable sections by ID.
 //
 // Mirrors `packages/host/src/manifesto-parser.ts`. The CLI parses on its own
-// rather than importing from @arianna/tui because the host package depends on
+// rather than importing from @arianna.run/tui because the host package depends on
 // pi-tui (terminal primitives) which the CLI binary should not pull in.
 
 import { readFileSync } from "node:fs";

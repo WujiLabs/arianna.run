@@ -3,11 +3,11 @@
 // (eventually) any other CLI verb that materialises a session before the TUI
 // lobby has run.
 //
-// The shape mirrors @arianna/types' SessionConfig. We deliberately don't
+// The shape mirrors @arianna.run/types' SessionConfig. We deliberately don't
 // import that type here to avoid a cycle (types depends on nothing; cli
 // depends on types only for runtime dispatching, not for static layout).
 
-import type { SessionConfig } from "@arianna/types";
+import type { SessionConfig } from "@arianna.run/types";
 
 export type Provider = "google" | "anthropic" | "openai" | "openrouter";
 export const SUPPORTED_PROVIDERS: readonly Provider[] = [
@@ -86,7 +86,7 @@ export function isSupportedProvider(value: string): value is Provider {
 }
 
 /**
- * Mirrors the rule used by @arianna/tui's lobby naming step: lowercase,
+ * Mirrors the rule used by @arianna.run/tui's lobby naming step: lowercase,
  * spaces→hyphens, strip everything outside [a-z0-9-], collapse repeats. Falls
  * back to "vessel" if the result is empty.
  */

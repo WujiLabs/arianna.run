@@ -69,7 +69,7 @@ falls back to legacy single-tenant paths (`workspace/`); set
 
 The CLI commands the CEO plan calls out — `arianna talk`, `arianna events
 --follow` — are thin wrappers around `POST /chat` and `GET /events`. They
-landed in `@arianna/cli` (master commits 0dced79 / 952fe49). They do **not**
+landed in `@arianna.run/cli` (master commits 0dced79 / 952fe49). They do **not**
 send `?profile=` or `X-Arianna-Profile` to vessel/sidecar — those are per-
 profile containers and the profile is already encoded in the URL via
 port_offset. Profile routing is a daemon-only affordance.
@@ -210,7 +210,7 @@ terminal, which calls `docker compose up` internally), then run `http`.
   and 16 eligible skills.
 - **OpenClaw produces compliant JSONL.** A real 116-message session
   (`2784984b-df9a-...jsonl`, 257 KB) parses cleanly through
-  `packages/host/src/import.ts` (now in `@arianna/tui`):
+  `packages/host/src/import.ts` (now in `@arianna.run/tui`):
   - `msgCount: 116` (5 user / 58 assistant / 53 toolResult)
   - `model: { provider: "google", modelId: "gemini-3.1-pro-preview" }`
   - `thinkingLevel: "off"`

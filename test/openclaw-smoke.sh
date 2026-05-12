@@ -13,7 +13,7 @@
 #
 #   2. http-test    (online; assumes docker stack is already up)
 #      Hits the daemon/sidecar/vessel HTTP contract directly with curl,
-#      mirroring the calls the future @arianna/cli will make:
+#      mirroring the calls the future @arianna.run/cli will make:
 #        - GET  :3000/health   (vessel)
 #        - GET  :8000/health   (sidecar)
 #        - GET  :9000/health   (daemon)
@@ -78,7 +78,7 @@ run_import_test() {
   # into the JS string) so a JSONL filename containing a quote or $() can't
   # break out of the JS literal. Capture JSON, assert key fields.
   local result
-  result=$(SMOKE_JSONL="$LATEST" pnpm --silent --filter @arianna/tui exec tsx -e "
+  result=$(SMOKE_JSONL="$LATEST" pnpm --silent --filter @arianna.run/tui exec tsx -e "
     import { parseOpenClawSession } from './src/import.ts';
     const path = process.env.SMOKE_JSONL;
     if (!path) { console.error('SMOKE_JSONL env not set'); process.exit(1); }

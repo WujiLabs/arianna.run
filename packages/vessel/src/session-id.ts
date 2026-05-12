@@ -23,7 +23,7 @@
 
 import { readFileSync } from "node:fs";
 
-// Mirrors @arianna/cli's profile-name regex but applied to sessionId. The
+// Mirrors @arianna.run/cli's profile-name regex but applied to sessionId. The
 // daemon already enforces the same shape via SAFE_ID_RE before tagging — we
 // re-validate here so a malformed config can't silently slip through.
 const SAFE_SESSION_ID_RE = /^[A-Za-z0-9_-]+$/;

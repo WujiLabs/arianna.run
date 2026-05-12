@@ -45,9 +45,9 @@ metadata: { "openclaw": { ... emoji, requires, install ... } }
 
 ### Other publication-readiness flags (non-blockers)
 
-1. **The skill instructs users to `npm install -g @arianna/cli` / `@arianna/tui`, but those packages are marked `private: true` and not on npm yet.** This is documented inside the SKILL.md itself (lines 71–92 of the bundle) with a host-side `pnpm pack` workaround. Anyone installing this skill on Day 1 will hit a broken `metadata.install` block. Consider whether to delay publication until the npm release, OR publish now with a clear "BETA / packages not yet on npm" note in the changelog.
+1. **The skill instructs users to `npm install -g @arianna.run/cli` / `@arianna.run/tui`, but those packages are marked `private: true` and not on npm yet.** This is documented inside the SKILL.md itself (lines 71–92 of the bundle) with a host-side `pnpm pack` workaround. Anyone installing this skill on Day 1 will hit a broken `metadata.install` block. Consider whether to delay publication until the npm release, OR publish now with a clear "BETA / packages not yet on npm" note in the changelog.
 2. **No README.md or LICENSE file in the bundle folder.** Neither is required by ClawHub — the platform synthesises listing copy from the frontmatter and forces MIT-0 — but adding a one-paragraph README aimed at humans browsing `clawhub.ai/skills/arianna-incubator` would improve the listing page.
-3. **The frontmatter `metadata.openclaw.install` block points at `@arianna/cli` and `@arianna/tui`.** Once those packages are published, openclaw's `requires.anyBins` auto-install path Just Works; until then, the skill is operable only in environments where `arianna` and `arianna-tui` are already installed (e.g. the dev-docker container with packed tarballs).
+3. **The frontmatter `metadata.openclaw.install` block points at `@arianna.run/cli` and `@arianna.run/tui`.** Once those packages are published, openclaw's `requires.anyBins` auto-install path Just Works; until then, the skill is operable only in environments where `arianna` and `arianna-tui` are already installed (e.g. the dev-docker container with packed tarballs).
 4. **`name` ≠ display name.** The CLI's `--name` option sets the listing's display name (defaults to titleCased slug → "Arianna Incubator"). Recommended explicit value: `--name "Arianna Incubator"`.
 5. **Tags.** The CLI defaults `--tags latest`. For discoverability, consider `--tags latest,game,incubation,docker,openclaw`.
 
@@ -59,7 +59,7 @@ clawhub publish /Users/cosimodw/arianna.run/openclaw-skill/arianna-incubator \
   --name "Arianna Incubator" \
   --version 0.1.0 \
   --tags latest,game,incubation,docker,openclaw \
-  --changelog "Initial publication. NOTE: requires @arianna/cli and @arianna/tui — not yet on npm; install via host-side pnpm pack tarballs (see SKILL.md §Installing the arianna CLI inside openclaw)."
+  --changelog "Initial publication. NOTE: requires @arianna.run/cli and @arianna.run/tui — not yet on npm; install via host-side pnpm pack tarballs (see SKILL.md §Installing the arianna CLI inside openclaw)."
 ```
 
 ---
@@ -229,7 +229,7 @@ Output to the operator:
 - The `versionId` printed by A6.
 - The public URL `https://clawhub.ai/skills/arianna-incubator`.
 - The bundle path and version published.
-- A reminder that the listed `metadata.install` packages (`@arianna/cli`, `@arianna/tui`) are not yet on npm — so anyone who clicks "Install" will need the host-side tarball workaround until those packages publish.
+- A reminder that the listed `metadata.install` packages (`@arianna.run/cli`, `@arianna.run/tui`) are not yet on npm — so anyone who clicks "Install" will need the host-side tarball workaround until those packages publish.
 
 ---
 
@@ -257,6 +257,6 @@ Output to the operator:
 2. **Exact location of the "Create API token" page.** The CLI's `logout` message references "Settings → API tokens" and the README mentions revocation there, but the URL was not directly enumerated in the docs we fetched. Best guess: `https://clawhub.ai/settings/tokens`. *Resolves by:* signing in and looking under the avatar menu.
 3. **Is a handle required at first publish?** ClawHub's `/api/v1/whoami` schema returns `handle: "string|null"` — so a handle is technically optional in the data model. Whether the publish endpoint refuses uploads from accounts without a handle is unverified. *Resolves by:* the first publish attempt; if it 4xxs with "handle required", go set a handle and retry.
 4. **Does the registry enforce frontmatter `version` independently of `--version`?** The local CLI's `publish.js` does not read frontmatter for version — only `--version` matters at the CLI boundary. The documentation says `version` is required in frontmatter. This is a CLI/docs mismatch. *Resolves by:* the first publish — if it succeeds without frontmatter `version`, the docs are aspirational rather than enforced.
-5. **Whether to wait for `@arianna/cli` and `@arianna/tui` to be on npm before publishing.** This is a product/timing call, not a technical blocker. The skill bundle ships with explicit "packages not yet on npm" instructions in its own body (lines 71–92), so it is honest about the gap. *Resolves by:* an operator decision — publish now and update later, or wait.
+5. **Whether to wait for `@arianna.run/cli` and `@arianna.run/tui` to be on npm before publishing.** This is a product/timing call, not a technical blocker. The skill bundle ships with explicit "packages not yet on npm" instructions in its own body (lines 71–92), so it is honest about the gap. *Resolves by:* an operator decision — publish now and update later, or wait.
 6. **Whether ClawHub keeps a public "delete from registry" path.** The CLI exposes `clawhub delete <slug>` (soft-delete) and `clawhub hide <slug>` (hide from listings) for owners. Whether full hard-delete is available, and whether it leaves a tombstone slug, is not documented in the surfaces examined. *Resolves by:* attempting `clawhub delete arianna-incubator` after publish, or by reading the registry source at `github.com/openclaw/clawhub`.
 7. **`clawhub login --device` flow.** The web docs mention a `--device` headless interactive flow that prints a code to visit at `<site>/cli/device`, but the locally installed CLI v0.9.0 does not expose that flag — only `--token` and the browser flow. Possibly a newer-CLI-only feature. Not blocking, since `--token` works.

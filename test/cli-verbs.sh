@@ -48,7 +48,7 @@ fail() {
 # job.
 if [ ! -f "$REPO_ROOT/packages/cli/dist/index.js" ]; then
   echo "Building CLI..."
-  pnpm --filter @arianna/cli exec tsc --build > /dev/null
+  pnpm --filter @arianna.run/cli exec tsc --build > /dev/null
 fi
 
 # Stub manifesto.md so manifesto command has something to read. The CLI looks

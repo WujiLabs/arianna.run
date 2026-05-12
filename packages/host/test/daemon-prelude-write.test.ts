@@ -25,7 +25,7 @@ import {
   readImportedMessagesFromDisk,
   importedMessagesPathFromSessionConfig,
 } from "../src/daemon-prelude-write.js";
-import { buildFiloPreludeText } from "@arianna/cli/filo-prelude";
+import { buildFiloPreludeText } from "@arianna.run/cli/filo-prelude";
 
 function mkProfile(opts: { aiName?: string | null; existingSeed?: string } = {}): {
   sessionConfigPath: string;

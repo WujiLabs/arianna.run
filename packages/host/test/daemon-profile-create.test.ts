@@ -4,8 +4,8 @@ import { tmpdir } from "node:os";
 import { join } from "node:path";
 
 import { handleProfileCreate } from "../src/daemon-profile-create.js";
-import { ariannaConfigPath, profileDir, profileOverridePath } from "@arianna/cli/paths";
-import { loadConfig } from "@arianna/cli/arianna-config";
+import { ariannaConfigPath, profileDir, profileOverridePath } from "@arianna.run/cli/paths";
+import { loadConfig } from "@arianna.run/cli/arianna-config";
 
 // Gap 12 (validation agent abf126be, 2026-05-09): the daemon's
 // /profile-create endpoint runs the same allocator + override-write +

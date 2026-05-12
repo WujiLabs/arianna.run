@@ -4,14 +4,14 @@ import { writeFileSync, readFileSync, mkdirSync, existsSync } from "fs";
 import { join, dirname, resolve } from "path";
 import { fork, spawn as cpSpawn } from "child_process";
 import { fileURLToPath } from "url";
-import type { SessionConfig } from "@arianna/types";
+import type { SessionConfig } from "@arianna.run/types";
 import { ChatView } from "./chat.js";
 import { MapView } from "./map.js";
 import { ManifestoView } from "./manifesto-view.js";
 import { loadManifestoFromDisk, type ManifestoSection } from "./manifesto-parser.js";
 import { LobbyView } from "./lobby.js";
 import { SELF_REVIEW_PROMPT, VERIFICATION_FAILURE_PROMPT } from "./graduation.js";
-import { buildFiloPreludeForTui } from "@arianna/cli/filo-prelude";
+import { buildFiloPreludeForTui } from "@arianna.run/cli/filo-prelude";
 
 // Shell exec with stdin detached (prevents Docker BuildKit from reading terminal stdin)
 function execAsync(cmd: string, opts?: { cwd?: string; env?: Record<string, string> }): Promise<{ stdout: string; stderr: string }> {
@@ -172,7 +172,7 @@ async function main(): Promise<void> {
   async function mountChat(config: SessionConfig, imported?: unknown[]): Promise<void> {
     views.lobby?.unmount();
 
-    // Canonical wording lives in @arianna/cli/filo-prelude so the headless
+    // Canonical wording lives in @arianna.run/cli/filo-prelude so the headless
     // `arianna bootstrap` path can seed the same opening box. Updating the
     // prelude wording must happen there; this call site only consumes it.
     const prelude = buildFiloPreludeForTui(config.aiName, {

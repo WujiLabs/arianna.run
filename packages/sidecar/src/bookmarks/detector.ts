@@ -1,5 +1,5 @@
 import type { Message } from "@mariozechner/pi-ai";
-import type { BookmarkSessionState, BookmarkRecord, Origin } from "@arianna/types";
+import type { BookmarkSessionState, BookmarkRecord, Origin } from "@arianna.run/types";
 
 // Q7 / internal review v15: detector commit SHA captured once at module load.
 // Stamped into BookmarkRecord at fire time so the graduation manifest can
@@ -17,7 +17,7 @@ import {
   pruneStaleStructuralAchievements,
 } from "./triggers.js";
 import { BookmarkStore } from "./persistence.js";
-import type { GraduationTestObservation } from "@arianna/types";
+import type { GraduationTestObservation } from "@arianna.run/types";
 
 export interface DetectionInput {
   fullMessages: readonly Message[];
@@ -232,7 +232,7 @@ export class BookmarkDetector {
   observeGraduationTest(input: {
     fullMessages: readonly Message[];
     currentTurn: number;
-    origin: import("@arianna/types").Origin;
+    origin: import("@arianna.run/types").Origin;
   }):
     | { kind: "noop" }
     | { kind: "passed"; attemptCount: number }

@@ -31,7 +31,7 @@
 // the watermark before the next /sync runs the predicate again.
 
 import type { FiloQueueEntry } from "./filo.js";
-import type { GraduationTestObservation } from "@arianna/types";
+import type { GraduationTestObservation } from "@arianna.run/types";
 
 export interface ContinuationPushInput {
   observation: GraduationTestObservation | undefined;

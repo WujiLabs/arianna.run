@@ -10,7 +10,7 @@
 // the POST. The next crash after the window closes posts with the count
 // of crashes that occurred while the window was open.
 //
-// Standalone — no @arianna/types or other workspace imports — so the
+// Standalone — no @arianna.run/types or other workspace imports — so the
 // vessel core tarball stays minimal at runtime. The shape is duplicated
 // inline; sidecar parses defensively via parseCrashPayload anyway.
 

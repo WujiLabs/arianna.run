@@ -1,5 +1,5 @@
 import { readFileSync, writeFileSync, renameSync, mkdirSync, existsSync, readdirSync, unlinkSync } from "fs";
-import type { BookmarkSessionState } from "@arianna/types";
+import type { BookmarkSessionState } from "@arianna.run/types";
 
 export class BookmarkStore {
   private readonly dir: string;

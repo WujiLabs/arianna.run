@@ -1,7 +1,7 @@
 #!/usr/bin/env bash
 # E2E smoke for the bootstrap-import features (#43 / day-1 OpenClaw demo path).
 #
-# Drives the @arianna/cli surface against a stub vessel that records every
+# Drives the @arianna.run/cli surface against a stub vessel that records every
 # request it receives. Verifies:
 #
 #   1. profile create  → blank-canvas lobby copy on stdout (Filo voice + next-step hint)
@@ -94,10 +94,10 @@ export VESSEL_BASE_URL="http://127.0.0.1:$PORT"
 # DAEMON_BASE_URL is unused for these subcommands but harmless to set.
 export DAEMON_BASE_URL="http://127.0.0.1:9999"
 
-# Build @arianna/cli once so we can invoke its compiled bin from a
+# Build @arianna.run/cli once so we can invoke its compiled bin from a
 # temporary cwd. (`pnpm --filter ... start` must be run from inside the
 # workspace, but our test cwd is a tmp dir that masquerades as a repo.)
-( cd "$ARIANNA_REPO" && pnpm --silent --filter @arianna/types --filter @arianna/cli build ) > /dev/null
+( cd "$ARIANNA_REPO" && pnpm --silent --filter @arianna.run/types --filter @arianna.run/cli build ) > /dev/null
 
 ARIANNA_BIN="$ARIANNA_REPO/packages/cli/bin/arianna.js"
 ARIANNA() { ( cd "$REPO_ROOT" && node "$ARIANNA_BIN" "$@" ); }

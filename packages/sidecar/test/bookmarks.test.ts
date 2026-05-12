@@ -3,7 +3,7 @@ import { createHash } from "crypto";
 import { mkdtempSync, rmSync, writeFileSync, existsSync, readdirSync } from "fs";
 import { tmpdir } from "os";
 import { join } from "path";
-import type { Origin } from "@arianna/types";
+import type { Origin } from "@arianna.run/types";
 import { BookmarkStore } from "../src/bookmarks/persistence.js";
 import {
   BookmarkDetector,

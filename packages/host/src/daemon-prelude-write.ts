@@ -26,7 +26,7 @@
 import { existsSync, mkdirSync, readFileSync, writeFileSync } from "node:fs";
 import { dirname, join } from "node:path";
 
-import { buildFiloPreludeAgentMessage } from "@arianna/cli/filo-prelude";
+import { buildFiloPreludeAgentMessage } from "@arianna.run/cli/filo-prelude";
 
 export type PreludeSkipReason =
   | "writePrelude=false"

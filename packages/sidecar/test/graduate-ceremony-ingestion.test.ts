@@ -34,7 +34,7 @@ import {
   makeIdHandler,
   readListPage,
 } from "../src/full-history.js";
-import type { BookmarkSessionState } from "@arianna/types";
+import type { BookmarkSessionState } from "@arianna.run/types";
 
 let tmpDir: string;
 let dbPath: string;

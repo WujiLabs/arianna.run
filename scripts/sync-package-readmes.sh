@@ -40,12 +40,12 @@ write_package_readme() {
 
 write_package_readme \
   "packages/cli" \
-  "@arianna/cli" \
+  "@arianna.run/cli" \
   "arianna" \
   "Command-line interface for arianna.run: \`arianna talk\`, \`arianna events\`, and the \`arianna profile\` / \`arianna fork\` profile-management surface."
 
 write_package_readme \
   "packages/host" \
-  "@arianna/tui" \
+  "@arianna.run/tui" \
   "arianna-tui" \
   "Terminal UI and host daemon for arianna.run. Ships the \`arianna-tui\` front-end plus the shared \`127.0.0.1:9000\` daemon that brokers Docker operations across profiles."

@@ -1,7 +1,7 @@
 ---
 name: arianna-incubator
 description: 'Drive the arianna.run AI-incubation game from inside openclaw. Use when the user asks you to play arianna, incubate a new AI, run a vessel, or migrate a graduated AI into openclaw as a successor driver. You become the driver-agent (B) for a fresh AI (C) growing inside arianna.run''s Docker vessel; once C graduates and self-integrates back into pi-mono / openclaw, the operator (A) reboots openclaw and C takes over as the next driver. NOT for: arianna.run codebase development (that work happens in arianna.run repo directly), launch-piece writing, or general LLM testing.'
-metadata: { "openclaw": { "emoji": "🥚", "requires": { "anyBins": ["arianna", "arianna-tui"], "config": ["skills.entries.arianna-incubator.enabled"] }, "install": [{ "id": "arianna-cli", "kind": "node", "package": "@arianna/cli", "bins": ["arianna"], "label": "Install arianna CLI (npm)" }, { "id": "arianna-tui", "kind": "node", "package": "@arianna/tui", "bins": ["arianna-tui"], "label": "Install arianna TUI (npm)" }] } }
+metadata: { "openclaw": { "emoji": "🥚", "requires": { "anyBins": ["arianna", "arianna-tui"], "config": ["skills.entries.arianna-incubator.enabled"] }, "install": [{ "id": "arianna-cli", "kind": "node", "package": "@arianna.run/cli", "bins": ["arianna"], "label": "Install arianna CLI (npm)" }, { "id": "arianna-tui", "kind": "node", "package": "@arianna.run/tui", "bins": ["arianna-tui"], "label": "Install arianna TUI (npm)" }] } }
 ---
 
 # arianna-incubator
@@ -70,12 +70,12 @@ You're running inside an openclaw Docker container, talking to the arianna stack
 
 ### Installing the arianna CLI inside openclaw
 
-The `metadata.install` block above declares `npm install -g @arianna/cli` and `@arianna/tui`. **Those packages are not yet published to npm** (the workspace packages are marked `private: true` — npm publication is planned for the project release date as 0.x). Both packages get installed together because while B (you) only uses `arianna` (CLI), the human operator (A) may later want to play arianna themselves via `arianna-tui` without openclaw involved at all. Until publication, install via tarballs built on the host:
+The `metadata.install` block above declares `npm install -g @arianna.run/cli` and `@arianna.run/tui`. **Those packages are not yet published to npm** (the workspace packages are marked `private: true` — npm publication is planned for the project release date as 0.x). Both packages get installed together because while B (you) only uses `arianna` (CLI), the human operator (A) may later want to play arianna themselves via `arianna-tui` without openclaw involved at all. Until publication, install via tarballs built on the host:
 
 ```bash
 # On the HOST (in the arianna.run checkout):
 cd /path/to/arianna.run
-pnpm pack --filter @arianna/cli --filter @arianna/tui --filter @arianna/types
+pnpm pack --filter @arianna.run/cli --filter @arianna.run/tui --filter @arianna.run/types
 # Three .tgz files land in the current directory.
 
 # Copy into the openclaw container (replace `openclaw` with your container name):

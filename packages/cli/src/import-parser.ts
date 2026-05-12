@@ -1,6 +1,6 @@
 // JSONL session parser. OpenClaw and pi-agent share the same on-disk format —
 // the host package's import.ts is the canonical implementation, but importing
-// it from the CLI would pull @arianna/tui's runtime (chalk, pi-tui). This is
+// it from the CLI would pull @arianna.run/tui's runtime (chalk, pi-tui). This is
 // a CLI-side copy of the same parser, kept narrow so the two stay in sync.
 
 import { readFileSync, existsSync, statSync } from "node:fs";

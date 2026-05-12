@@ -2,7 +2,7 @@
 //
 // Two surfaces deliver this same opening box to the vessel on its first turn:
 //
-//   1. The TUI (`@arianna/tui` / arianna-tui) — renders the box locally on
+//   1. The TUI (`@arianna.run/tui` / arianna-tui) — renders the box locally on
 //      ChatView mount, then prepends the same string as `{content, sender:
 //      "external"}` to the first /chat payload.
 //   2. Headless `arianna bootstrap` — when no `--seed-from-jsonl` was passed
@@ -114,8 +114,8 @@ export function buildFiloPreludeText(
  * Convenience for the TUI: returns the prelude text plus the prompt nudge
  * and the bundled-message payload that ChatView prepends to the first /chat
  * call. The chalk colouring of `displayText` is applied at the TUI call site
- * so this module stays free of presentation deps (chalk lives in `@arianna/
- * tui`'s dependency graph, not `@arianna/cli`'s).
+ * so this module stays free of presentation deps (chalk lives in `@arianna.run/
+ * tui`'s dependency graph, not `@arianna.run/cli`'s).
  */
 export function buildFiloPreludeForTui(
   aiName: string,

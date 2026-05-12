@@ -114,7 +114,7 @@ cat > "$TRANSCRIPT" <<EOF
 
 Visual smoke test for the new chrome introduced in Phase 4: Editor with slash autocomplete, /map snapshot tree view, /manifesto reader. Each section below is a tmux pane capture taken right after the named action. ANSI escapes are preserved in the code blocks.
 
-Stack: vessel + sidecar in docker, host TUI via \`pnpm --filter @arianna/host start\` inside a tmux pane (120x40). API: ${PROVIDER}/${MODEL_ID}, AI: ${AI_NAME}.
+Stack: vessel + sidecar in docker, host TUI via \`pnpm --filter @arianna.run/host start\` inside a tmux pane (120x40). API: ${PROVIDER}/${MODEL_ID}, AI: ${AI_NAME}.
 
 ---
 EOF
@@ -142,7 +142,7 @@ mkdir -p "$(dirname "$SOCKET")"
 tmux -S "$SOCKET" new-session -d -s "$SESSION" -x 120 -y 40
 tmux -S "$SOCKET" send-keys -t "$TARGET" "cd $(pwd) && export SKIP_LOBBY=1" Enter
 sleep 0.5
-send "pnpm --filter @arianna/host start"
+send "pnpm --filter @arianna.run/host start"
 key Enter
 
 wait_for "Say something" 30 || { echo "FAIL: TUI did not reach prompt"; cap; exit 1; }

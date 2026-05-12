@@ -6,7 +6,7 @@
 // gates the §2.1 phase transition; the original off-by-one was structurally
 // unreachable.
 
-import type { Origin } from "@arianna/types";
+import type { Origin } from "@arianna.run/types";
 
 export const ORIGIN_VALUES: ReadonlySet<Origin> = new Set<Origin>([
   "ai-turn",

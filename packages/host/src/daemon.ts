@@ -5,7 +5,7 @@ import { fileURLToPath } from "url";
 import { exec, execSync } from "child_process";
 import { promisify } from "util";
 import Dockerode from "dockerode";
-import type { SnapshotMeta, SessionConfig } from "@arianna/types";
+import type { SnapshotMeta, SessionConfig } from "@arianna.run/types";
 import {
   composeBaseCommand,
   resolveProfileContext,

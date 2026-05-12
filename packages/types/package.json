@@ -1,8 +1,10 @@
 {
-  "name": "@arianna/types",
+  "name": "@arianna.run/types",
   "version": "0.1.0",
-  "private": true,
   "type": "module",
+  "publishConfig": {
+    "access": "public"
+  },
   "description": "Shared TypeScript types for arianna.run (vessel/sidecar/host/cli contracts).",
   "license": "MIT",
   "homepage": "https://arianna.run",

@@ -1,5 +1,5 @@
 {
-  "name": "@arianna/sidecar",
+  "name": "@arianna.run/sidecar",
   "version": "0.1.0",
   "private": true,
   "type": "module",
@@ -8,7 +8,7 @@
     "start": "node --import tsx/esm src/index.ts"
   },
   "dependencies": {
-    "@arianna/types": "workspace:*",
+    "@arianna.run/types": "workspace:*",
     "@mariozechner/pi-ai": "catalog:",
     "better-sqlite3": "catalog:",
     "express": "catalog:"

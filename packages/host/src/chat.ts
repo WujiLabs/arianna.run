@@ -11,7 +11,7 @@ import {
   type Component,
 } from "@mariozechner/pi-tui";
 import chalk from "chalk";
-import type { SessionConfig, SidecarEvent } from "@arianna/types";
+import type { SessionConfig, SidecarEvent } from "@arianna.run/types";
 import { getEditorTheme } from "./theme.js";
 
 const VESSEL_BASE_URL = process.env.VESSEL_BASE_URL ?? "http://127.0.0.1:3000";

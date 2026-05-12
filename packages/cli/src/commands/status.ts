@@ -12,7 +12,7 @@
 import { readFileSync } from "node:fs";
 
 import type { ResolvedConfig } from "../config.js";
-import type { SessionConfig } from "@arianna/types";
+import type { SessionConfig } from "@arianna.run/types";
 import { loadConfig } from "../arianna-config.js";
 import {
   eventCursorPath,

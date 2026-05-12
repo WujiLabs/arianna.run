@@ -399,7 +399,7 @@ export function resolveDaemonScript(opts: PathOpts = {}): DaemonScript {
   }
   throw new DaemonCommandError(
     `Daemon script not found at ${compiled} or ${tsxSrc}. ` +
-      `Run \`pnpm --filter @arianna/tui build\` to build the daemon first.`,
+      `Run \`pnpm --filter @arianna.run/tui build\` to build the daemon first.`,
   );
 }
 

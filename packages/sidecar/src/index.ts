@@ -17,7 +17,7 @@ import type {
   SyncPayload,
   SidecarEvent,
   Origin,
-} from "@arianna/types";
+} from "@arianna.run/types";
 import {
   filoBox,
   getHintForCount,

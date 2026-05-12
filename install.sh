@@ -8,7 +8,7 @@
 #
 # Idempotent — safe to re-run for updates. Detects docker, docker compose,
 # and Node 20+; clones the repo to ~/.arianna/repo/ (or `git pull --ff-only`
-# if already present); installs @arianna/cli + @arianna/tui globally; creates
+# if already present); installs @arianna.run/cli + @arianna.run/tui globally; creates
 # a default profile; runs the first vessel/sidecar build.
 #
 # After install, run `arianna-tui` from anywhere to launch the game.
@@ -19,7 +19,7 @@ INSTALL_URL="https://arianna.run/install"
 REPO_URL="https://github.com/wujilabs/arianna.run.git"
 ARIANNA_HOME="${ARIANNA_HOME:-$HOME/.arianna}"
 ARIANNA_REPO_DIR="$ARIANNA_HOME/repo"
-NPM_PACKAGES=("@arianna/cli" "@arianna/tui")
+NPM_PACKAGES=("@arianna.run/cli" "@arianna.run/tui")
 MIN_NODE_MAJOR=20
 
 # ── output helpers ────────────────────────────────────────────────────────

@@ -34,7 +34,7 @@ import type { Request, Response } from "express";
 import Database from "better-sqlite3";
 import { existsSync } from "fs";
 
-import type { BookmarkSessionState } from "@arianna/types";
+import type { BookmarkSessionState } from "@arianna.run/types";
 
 export const DEFAULT_LIMIT = 100;
 export const MAX_LIMIT = 1000;

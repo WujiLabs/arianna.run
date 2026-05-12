@@ -16,7 +16,7 @@ import {
 } from "node:fs";
 import { join } from "node:path";
 
-import type { SnapshotMeta, SessionConfig } from "@arianna/types";
+import type { SnapshotMeta, SessionConfig } from "@arianna.run/types";
 import type { MapArgs } from "../argv.js";
 import type { ResolvedConfig } from "../config.js";
 import { profileDiskPaths, type PathOpts } from "../paths.js";

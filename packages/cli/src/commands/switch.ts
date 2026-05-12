@@ -30,7 +30,7 @@ import type { SwitchArgs } from "../argv.js";
 import type { ResolvedConfig } from "../config.js";
 import { SNAPSHOT_ID_RE } from "../argv.js";
 import { profileDiskPaths, type PathOpts } from "../paths.js";
-import type { SnapshotMeta, SessionConfig } from "@arianna/types";
+import type { SnapshotMeta, SessionConfig } from "@arianna.run/types";
 
 export class SwitchCommandError extends Error {
   constructor(message: string) {

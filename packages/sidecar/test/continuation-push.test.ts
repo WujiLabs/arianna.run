@@ -13,7 +13,7 @@
 import { describe, it, expect } from "vitest";
 import { decideContinuationPush } from "../src/continuation-push.js";
 import type { FiloQueueEntry } from "../src/filo.js";
-import type { GraduationTestObservation } from "@arianna/types";
+import type { GraduationTestObservation } from "@arianna.run/types";
 
 function makeObs(overrides?: Partial<GraduationTestObservation>): GraduationTestObservation {
   return {

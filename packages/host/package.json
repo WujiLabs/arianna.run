@@ -1,8 +1,10 @@
 {
-  "name": "@arianna/tui",
+  "name": "@arianna.run/tui",
   "version": "0.1.0",
-  "private": true,
   "type": "module",
+  "publishConfig": {
+    "access": "public"
+  },
   "description": "Terminal UI + host daemon for arianna.run.",
   "license": "MIT",
   "homepage": "https://arianna.run",
@@ -28,8 +30,8 @@
     "daemon": "tsx src/daemon.ts"
   },
   "dependencies": {
-    "@arianna/cli": "workspace:*",
-    "@arianna/types": "workspace:*",
+    "@arianna.run/cli": "workspace:*",
+    "@arianna.run/types": "workspace:*",
     "@mariozechner/pi-tui": "catalog:",
     "chalk": "catalog:",
     "dockerode": "catalog:"

@@ -18,7 +18,7 @@
 #
 # Flags:
 #   --version <semver>   Force a specific version. Otherwise read from the
-#                        first publishable package.json (@arianna/cli).
+#                        first publishable package.json (@arianna.run/cli).
 #   --bump <patch|minor|major>
 #                        Bump the existing version by the given semver
 #                        increment before publishing. Mutually exclusive
@@ -40,7 +40,7 @@
 #   - `npm whoami` succeeds (for --publish mode).
 #
 # Post-conditions (--publish mode):
-#   - @arianna/types, @arianna/cli, @arianna/tui published to npm at the
+#   - @arianna.run/types, @arianna.run/cli, @arianna.run/tui published to npm at the
 #     resolved version, with `--access public`.
 #   - A version-bump commit is on HEAD.
 #   - A git tag `v<version>` is created locally (pushed only if --push).
@@ -193,7 +193,7 @@ else
 fi
 
 # Build every workspace package (publishable ones AND their deps).
-pnpm -r --filter='@arianna/*' --filter='core' run build
+pnpm -r --filter='@arianna.run/*' --filter='core' run build
 ok "all package builds clean"
 
 # ── version bump (commit) ──────────────────────────────────────────────

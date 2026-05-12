@@ -60,7 +60,7 @@ These are correct — they reference env vars, they don't leak them — but list
 - `.claude/skills/gstack/test/skill-e2e-review-army.test.ts:504` — SQL-injection example string
 - `.claude/skills/gstack/.env.example:5` — `ANTHROPIC_API_KEY=sk-ant-your-key-here`
 
-None are real credentials. They live inside developer tooling that is **not packaged or published** with arianna — gstack is a Claude Code skill bundle, not a runtime dependency of `@arianna/cli` / `@arianna/tui`. They will not be exposed by the launch artifacts (`README`, `LICENSE`, npm packages, install script).
+None are real credentials. They live inside developer tooling that is **not packaged or published** with arianna — gstack is a Claude Code skill bundle, not a runtime dependency of `@arianna.run/cli` / `@arianna.run/tui`. They will not be exposed by the launch artifacts (`README`, `LICENSE`, npm packages, install script).
 
 If desired, future hygiene options:
 

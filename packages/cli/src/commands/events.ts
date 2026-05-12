@@ -1,7 +1,7 @@
 import type { EventsArgs } from "../argv.js";
 import type { ResolvedConfig } from "../config.js";
 import { readSSE } from "../sse.js";
-import type { SidecarEvent } from "@arianna/types";
+import type { SidecarEvent } from "@arianna.run/types";
 
 export interface EventsDeps {
   fetch: typeof globalThis.fetch;

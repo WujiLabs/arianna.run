@@ -6,7 +6,7 @@
 // Children of each node are sorted by timestamp ascending so the visual tree
 // reads in chronological order.
 
-import type { SnapshotMeta, SnapshotTreeNode } from "@arianna/types";
+import type { SnapshotMeta, SnapshotTreeNode } from "@arianna.run/types";
 
 export function buildSnapshotTree(snapshots: SnapshotMeta[]): SnapshotTreeNode[] {
   if (snapshots.length === 0) return [];

@@ -9,7 +9,7 @@ import { readFileSync, readdirSync } from "fs";
 import { join, resolve, dirname } from "path";
 import { fileURLToPath } from "url";
 import chalk from "chalk";
-import type { SnapshotMeta, SnapshotTreeNode, SessionConfig } from "@arianna/types";
+import type { SnapshotMeta, SnapshotTreeNode, SessionConfig } from "@arianna.run/types";
 import { VesselFrame } from "./components/vessel-frame.js";
 import { SnapshotTreeView, formatSnapshotNode } from "./components/tree-view.js";
 import { buildSnapshotTree } from "./snapshot-tree.js";

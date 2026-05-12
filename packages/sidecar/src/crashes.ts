@@ -15,7 +15,7 @@ import {
   mkdirSync,
   readFileSync,
 } from "node:fs";
-import type { VesselCrashReport } from "@arianna/types";
+import type { VesselCrashReport } from "@arianna.run/types";
 
 /** Cap returned recent crashes — keeps /graduation-state response small. */
 export const RECENT_CRASHES_LIMIT = 10;

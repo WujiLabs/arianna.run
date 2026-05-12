@@ -1,6 +1,6 @@
 import { describe, it, expect } from "vitest";
 import { buildSnapshotTree } from "../src/snapshot-tree.js";
-import type { SnapshotMeta } from "@arianna/types";
+import type { SnapshotMeta } from "@arianna.run/types";
 
 function meta(id: string, parentId: string | null, ts = Number(id.replace(/\D/g, "")) || 0): SnapshotMeta {
   return {

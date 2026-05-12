@@ -21,7 +21,7 @@ import {
   TruncatedText,
   truncateToWidth,
 } from "@mariozechner/pi-tui";
-import type { SnapshotTreeNode } from "@arianna/types";
+import type { SnapshotTreeNode } from "@arianna.run/types";
 import { theme } from "../theme.js";
 
 interface FlatNode {

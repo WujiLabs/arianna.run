@@ -216,7 +216,7 @@ if [ -f "$REAL_REPO/packages/host/dist/daemon.js" ] && [ "${ARIANNA_CLI_E2E_DAEM
   pass "daemon stopped cleanly"
   cd "$REPO_ROOT"
 else
-  echo "  SKIP: daemon spawn live test (set ARIANNA_CLI_E2E_DAEMON=1 + run pnpm --filter @arianna/tui build first)"
+  echo "  SKIP: daemon spawn live test (set ARIANNA_CLI_E2E_DAEMON=1 + run pnpm --filter @arianna.run/tui build first)"
 fi
 
 echo ""

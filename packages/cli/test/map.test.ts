@@ -2,7 +2,7 @@ import { describe, it, expect } from "vitest";
 import { runMap, renderTree, MapCommandError } from "../src/commands/map.js";
 import { resolveConfig } from "../src/config.js";
 import { ISOLATED_ARIANNA_HOME } from "./_isolated-home.js";
-import type { SnapshotMeta } from "@arianna/types";
+import type { SnapshotMeta } from "@arianna.run/types";
 
 function snap(
   id: string,

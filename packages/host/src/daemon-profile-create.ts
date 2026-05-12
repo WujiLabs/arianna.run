@@ -20,15 +20,15 @@
 import { mkdirSync, rmSync } from "node:fs";
 import { dirname } from "node:path";
 
-import { loadConfig, saveConfig } from "@arianna/cli/arianna-config";
-import { writeComposeOverride } from "@arianna/cli/compose-override";
+import { loadConfig, saveConfig } from "@arianna.run/cli/arianna-config";
+import { writeComposeOverride } from "@arianna.run/cli/compose-override";
 import {
   allocateOffset,
   withPortLock,
   type AllocateOpts,
-} from "@arianna/cli/port-allocator";
-import { profileDir, profileOverridePath, type PathOpts } from "@arianna/cli/paths";
-import { isValidProfileName } from "@arianna/cli/profile";
+} from "@arianna.run/cli/port-allocator";
+import { profileDir, profileOverridePath, type PathOpts } from "@arianna.run/cli/paths";
+import { isValidProfileName } from "@arianna.run/cli/profile";
 
 export type ProfileCreateInputs = {
   name: string;

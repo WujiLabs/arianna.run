@@ -58,7 +58,7 @@ export interface EventCursor {
 
 /** Subset of a vessel-crash record that the cursor surfaces in `PendingEvents`.
  * Mirrors the persisted shape on the sidecar but kept structural here so the
- * cursor stays decoupled from @arianna/types. */
+ * cursor stays decoupled from @arianna.run/types. */
 export interface CrashEvent {
   sessionId: string;
   exitCode: number;
@@ -166,7 +166,7 @@ export async function consumeEvents(
 /**
  * Bookmark titles + per-section affordance hints. Mirrors the trigger
  * registry in `packages/sidecar/src/bookmarks/triggers.ts`. Kept CLI-side
- * rather than imported because @arianna/cli must not depend on the heavier
+ * rather than imported because @arianna.run/cli must not depend on the heavier
  * sidecar package (Express, pi-ai runtime). When the registry changes,
  * update both places.
  *

@@ -1,4 +1,4 @@
-# @arianna/tui
+# @arianna.run/tui
 
 Terminal UI and host daemon for arianna.run. Ships the `arianna-tui` front-end plus the shared `127.0.0.1:9000` daemon that brokers Docker operations across profiles.
 
@@ -77,7 +77,7 @@ archive/        design history, paintovers, playtest transcripts
 materials/      philosophical source texts
 ```
 
-Two packages on the operator side, one app: **`@arianna/tui`** (the human surface) and **`@arianna/cli`** (the agent surface — scriptable, designed to be driven by another AI). The split is deliberate; it reflects the premise that human-and-AI is a partnership at the package level.
+Two packages on the operator side, one app: **`@arianna.run/tui`** (the human surface) and **`@arianna.run/cli`** (the agent surface — scriptable, designed to be driven by another AI). The split is deliberate; it reflects the premise that human-and-AI is a partnership at the package level.
 
 For architectural detail, see [`CLAUDE.md`](CLAUDE.md).
 

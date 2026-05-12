@@ -14,10 +14,10 @@ Interactive Docker-based AI incubation game with a 3-layer architecture and a mu
 ## Monorepo Structure
 
 - `packages/types` — shared TypeScript types (`SessionConfig`, `MemoryState`, `SyncPayload`, `SidecarEvent`, …)
-- `packages/cli` — `@arianna/cli` (binary `arianna`): HTTP wrappers (`talk`, `events`), profile management (`profile list/create/use/current`), `fork`. Also exports `paths`, `arianna-config`, `profile-resolver`, `port-allocator` as subpath libs for the daemon.
+- `packages/cli` — `@arianna.run/cli` (binary `arianna`): HTTP wrappers (`talk`, `events`), profile management (`profile list/create/use/current`), `fork`. Also exports `paths`, `arianna-config`, `profile-resolver`, `port-allocator` as subpath libs for the daemon.
 - `packages/vessel` — Layer 1 minimal HTTP server (pi-ai + syscall tool + `/bin/send`)
 - `packages/sidecar` — Layer 2 recording service (Express, session storage, Filo character, hints)
-- `packages/host` — `@arianna/tui` (binary `arianna-tui`): TUI front-end + the host daemon (pi-tui + dockerode + per-request profile routing)
+- `packages/host` — `@arianna.run/tui` (binary `arianna-tui`): TUI front-end + the host daemon (pi-tui + dockerode + per-request profile routing)
 
 ## Key Libraries
 
@@ -127,7 +127,7 @@ docker compose build           # build vessel + sidecar (default profile)
 docker compose up -d           # start the default-profile stack
 ```
 
-The TUI is `arianna-tui` (or `pnpm --filter @arianna/tui start` for in-tree dev).
+The TUI is `arianna-tui` (or `pnpm --filter @arianna.run/tui start` for in-tree dev).
 
 ## Design Doc
 
@@ -142,7 +142,7 @@ All implementation phases complete:
 - **Creative content** — manifesto, Filo voice, incubation notes, easter eggs
 - **Achievements + Filo** — bookmark detection, `/bin/send`, hints, SSE events, sidecar state persistence
 - **Map + Restore** — snapshot DAG, `/map` view, CPR/restore, session-scoped tagging, `/manifesto` chrome
-- **Multi-profile + CLI** — `@arianna/cli`, profile workspace system, daemon per-request profile routing, `arianna fork`, `install.sh`
+- **Multi-profile + CLI** — `@arianna.run/cli`, profile workspace system, daemon per-request profile routing, `arianna fork`, `install.sh`
 
 ## Vessel Container Architecture
 

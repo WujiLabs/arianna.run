@@ -1,8 +1,10 @@
 {
-  "name": "@arianna/cli",
+  "name": "@arianna.run/cli",
   "version": "0.1.0",
-  "private": true,
   "type": "module",
+  "publishConfig": {
+    "access": "public"
+  },
   "description": "arianna.run command-line interface — talk, events, and profile management.",
   "license": "MIT",
   "homepage": "https://arianna.run",
@@ -62,7 +64,7 @@
     "start": "tsx src/index.ts"
   },
   "dependencies": {
-    "@arianna/types": "workspace:*",
+    "@arianna.run/types": "workspace:*",
     "chalk": "catalog:"
   }
 }

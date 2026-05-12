@@ -12,7 +12,7 @@
 // These helpers are extracted into their own module so they can be tested
 // without mocking dockerode or child_process.
 
-import type { SessionConfig } from "@arianna/types";
+import type { SessionConfig } from "@arianna.run/types";
 
 /**
  * Per-profile vessel image repo name. Legacy single-tenant runs use the bare

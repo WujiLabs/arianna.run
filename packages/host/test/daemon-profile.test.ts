@@ -10,7 +10,7 @@ import {
   type ProfileContext,
   type RequestProfileInput,
 } from "../src/daemon-profile.js";
-import { ariannaConfigPath, profileDir } from "@arianna/cli/paths";
+import { ariannaConfigPath, profileDir } from "@arianna.run/cli/paths";
 
 function mk() {
   const home = mkdtempSync(join(tmpdir(), "arianna-daemon-home-"));

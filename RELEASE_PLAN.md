@@ -78,7 +78,7 @@ repo to public + cutting the v1 tag + writing release notes.
    scratch file — no `CHANGELOG.md` is kept in-repo). Include:
    - One-line summary
    - Install command (`curl -fsSL https://arianna.run/install | bash`)
-   - Links to the published npm packages (`@arianna/cli`, `@arianna/tui`)
+   - Links to the published npm packages (`@arianna.run/cli`, `@arianna.run/tui`)
    - Link to the clawhub skill page
    - The launch essay (when ready)
 8. **Domain wiring** — ensure `arianna.run/install` redirects to the
@@ -105,17 +105,17 @@ repo to public + cutting the v1 tag + writing release notes.
 
 | Package | Public? | Reason |
 |---|---|---|
-| `@arianna/types` | **Yes** | Consumed transitively by `@arianna/cli` and `@arianna/tui`; forking users will want it. |
-| `@arianna/cli` | **Yes** | The agent surface — global `arianna` binary. |
-| `@arianna/tui` | **Yes** | The human surface — global `arianna-tui` binary. |
-| `@arianna/sidecar` | No (private) | Runs inside the Docker container; users get it via the repo clone + `docker compose build`, not via `npm i`. |
+| `@arianna.run/types` | **Yes** | Consumed transitively by `@arianna.run/cli` and `@arianna.run/tui`; forking users will want it. |
+| `@arianna.run/cli` | **Yes** | The agent surface — global `arianna` binary. |
+| `@arianna.run/tui` | **Yes** | The human surface — global `arianna-tui` binary. |
+| `@arianna.run/sidecar` | No (private) | Runs inside the Docker container; users get it via the repo clone + `docker compose build`, not via `npm i`. |
 | `core` (vessel) | No (private) | Same as sidecar — Docker-internal. Bare package name (`core`) reflects its runtime path (`/home/{user}/core/` inside the vessel). |
 
 ### Pre-publish audit results (as of doc/packaging-release-plan)
 
 - ✅ `bin` entries: `arianna` → `./bin/arianna.js`, `arianna-tui` → `./bin/arianna-tui.js`. Both shims correctly defer to `./dist/index.js`.
 - ✅ `files` arrays: `["bin", "dist"]` on cli/tui. Won't ship `src/`,
-  `test/`, `tsconfig.json`, `workspace/`. `@arianna/types` `files` array
+  `test/`, `tsconfig.json`, `workspace/`. `@arianna.run/types` `files` array
   added: `["dist"]`.
 - ✅ `repository.url` points at `git+https://github.com/wujilabs/arianna.run.git`
   on all three publishable packages.
@@ -146,21 +146,21 @@ repo to public + cutting the v1 tag + writing release notes.
    npm login                 # interactive; uses your npm account
    npm whoami                # confirm
    ```
-2. **Verify package name ownership**. The `@arianna/*` scope must be owned
+2. **Verify package name ownership**. The `@arianna.run/*` scope must be owned
    by your account or by the `arianna` org on npm. If unowned, create it:
    ```bash
    npm org create arianna             # if creating a new org
    # or just publish under your user with --access public
    ```
 3. **Decide publish order** (deps first):
-   1. `@arianna/types`
-   2. `@arianna/cli` (depends on types)
-   3. `@arianna/tui` (depends on cli + types)
+   1. `@arianna.run/types`
+   2. `@arianna.run/cli` (depends on types)
+   3. `@arianna.run/tui` (depends on cli + types)
 4. **Dry-run first**:
    ```bash
-   pnpm publish --filter @arianna/types --dry-run --access public
-   pnpm publish --filter @arianna/cli   --dry-run --access public
-   pnpm publish --filter @arianna/tui   --dry-run --access public
+   pnpm publish --filter @arianna.run/types --dry-run --access public
+   pnpm publish --filter @arianna.run/cli   --dry-run --access public
+   pnpm publish --filter @arianna.run/tui   --dry-run --access public
    ```
    Inspect the tarball manifest — should contain only `bin/` (where
    applicable) and `dist/`, plus README/LICENSE if present.
@@ -172,9 +172,9 @@ repo to public + cutting the v1 tag + writing release notes.
    clean tree; pnpm's own check is a duplicate.
 6. **Verify on registry**:
    ```bash
-   npm view @arianna/cli@latest
-   npm view @arianna/tui@latest
-   npm view @arianna/types@latest
+   npm view @arianna.run/cli@latest
+   npm view @arianna.run/tui@latest
+   npm view @arianna.run/types@latest
    ```
 7. **Test the install command on a clean machine** (the `install.sh`
    pipeline). This is the user's first impression — do not skip.
@@ -214,8 +214,8 @@ artifact — it's how openclaw users install + start an arianna session.
       requires:
         anyBins: [arianna, arianna-tui]
       install:
-        - { id: arianna-cli, kind: node, package: "@arianna/cli", bins: [arianna] }
-        - { id: arianna-tui, kind: node, package: "@arianna/tui", bins: [arianna-tui] }
+        - { id: arianna-cli, kind: node, package: "@arianna.run/cli", bins: [arianna] }
+        - { id: arianna-tui, kind: node, package: "@arianna.run/tui", bins: [arianna-tui] }
   ---
   ```
   Required fields per clawhub docs: `name`, `description`. Recommended:
@@ -255,7 +255,7 @@ artifact — it's how openclaw users install + start an arianna session.
 
 - ✅ `SKILL.md` frontmatter is valid YAML, slug conforms.
 - ✅ Skill describes a clear `requires.anyBins` gate so clawhub install UI
-  will prompt the user to install `@arianna/cli` and `@arianna/tui` first.
+  will prompt the user to install `@arianna.run/cli` and `@arianna.run/tui` first.
 - ✅ `install` metadata declares the two npm packages — clawhub clients
   that support automatic install (e.g. openclaw with the `--install` flag)
   will run `npm i -g` for the user.

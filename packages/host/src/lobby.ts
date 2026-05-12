@@ -8,7 +8,7 @@ import {
   type SelectItem,
 } from "@mariozechner/pi-tui";
 import chalk from "chalk";
-import type { SessionConfig } from "@arianna/types";
+import type { SessionConfig } from "@arianna.run/types";
 import { nameToUsername } from "./naming.js";
 import { getSelectListTheme } from "./theme.js";
 import { parseOpenClawSession } from "./import.js";

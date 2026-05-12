@@ -1,5 +1,5 @@
 import { describe, it, expect } from "vitest";
-import type { SessionConfig } from "@arianna/types";
+import type { SessionConfig } from "@arianna.run/types";
 
 import {
   assertContainerSessionId,

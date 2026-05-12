@@ -9,7 +9,7 @@ import { describe, it, expect, afterEach } from "vitest";
 import { mkdtempSync, rmSync, existsSync } from "fs";
 import { tmpdir } from "os";
 import { join } from "path";
-import type { GraduationTestObservation, Origin } from "@arianna/types";
+import type { GraduationTestObservation, Origin } from "@arianna.run/types";
 import { BookmarkStore } from "../src/bookmarks/persistence.js";
 import { BookmarkDetector } from "../src/bookmarks/detector.js";
 import {

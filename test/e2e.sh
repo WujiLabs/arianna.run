@@ -168,7 +168,7 @@ tmux -S "$SOCKET" new-session -d -s "$SESSION" -x 120 -y 40
 tmux -S "$SOCKET" send-keys -t "$TARGET" \
   "cd $(pwd) && export SKIP_LOBBY=1" Enter
 sleep 0.5
-send "pnpm --filter @arianna/host start"
+send "pnpm --filter @arianna.run/host start"
 key Enter
 
 echo "[5/5] Waiting for initial message prompt..."
