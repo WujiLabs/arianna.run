@@ -7,9 +7,13 @@
 #   https://raw.githubusercontent.com/wujilabs/arianna.run/main/install.sh
 #
 # Idempotent — safe to re-run for updates. Detects docker, docker compose,
-# and Node 20+; clones the repo to ~/.arianna/repo/ (or `git pull --ff-only`
-# if already present); installs @arianna.run/cli + @arianna.run/tui globally; creates
-# a default profile; runs the first vessel/sidecar build.
+# and Node 20+; clones the repo to ~/.arianna/repo/ (or fetches tags into an
+# existing clone); checks out a released tag (latest by default, or pin via
+# `ARIANNA_VERSION=v0.1.2 …`); installs @arianna.run/cli + @arianna.run/tui
+# globally; runs the first vessel/sidecar build.
+#
+# Reproducibility: install.sh always checks out a tag, never a moving branch.
+# Override via:    ARIANNA_VERSION=v0.1.2 curl -fsSL … | bash
 #
 # After install, run `arianna-tui` from anywhere to launch the game.
 
@@ -19,6 +23,7 @@ INSTALL_URL="https://arianna.run/install"
 REPO_URL="https://github.com/wujilabs/arianna.run.git"
 ARIANNA_HOME="${ARIANNA_HOME:-$HOME/.arianna}"
 ARIANNA_REPO_DIR="$ARIANNA_HOME/repo"
+ARIANNA_VERSION="${ARIANNA_VERSION:-latest}"
 NPM_PACKAGES=("@arianna.run/cli" "@arianna.run/tui")
 MIN_NODE_MAJOR=20
 
@@ -125,18 +130,24 @@ fi
 ok "docker daemon reachable"
 
 # 5. canonical repo at ~/.arianna/repo/
-hdr "fetching arianna repo"
+#
+# Reproducibility model: we always end on a tagged commit, never main HEAD.
+# `ARIANNA_VERSION=latest` (default) resolves to the highest version-sorted tag.
+# `ARIANNA_VERSION=v0.1.2` pins exactly. install.sh itself never needs editing
+# per-release — pushing a new tag is sufficient for re-runs to pick it up.
+hdr "fetching arianna repo (target: $ARIANNA_VERSION)"
 mkdir -p "$ARIANNA_HOME"
 if [[ -d "$ARIANNA_REPO_DIR/.git" ]]; then
   ok "found existing checkout at $ARIANNA_REPO_DIR"
-  if git -C "$ARIANNA_REPO_DIR" pull --ff-only >/dev/null 2>&1; then
-    ok "fast-forwarded to latest main"
+  if git -C "$ARIANNA_REPO_DIR" fetch --tags --quiet origin >/dev/null 2>&1; then
+    ok "fetched latest refs + tags from origin"
   else
-    warn "could not fast-forward — leaving local state intact"
-    note "Inspect with \`git -C $ARIANNA_REPO_DIR status\` if needed."
+    warn "could not fetch from origin — using local refs"
   fi
 else
-  if git clone --depth 1 "$REPO_URL" "$ARIANNA_REPO_DIR"; then
+  # Full clone (not --depth 1) so `git describe --tags` and version-sorted
+  # tag listing have a complete tag namespace to pick from.
+  if git clone --quiet "$REPO_URL" "$ARIANNA_REPO_DIR"; then
     ok "cloned $REPO_URL → $ARIANNA_REPO_DIR"
   else
     err "could not clone $REPO_URL"
@@ -144,6 +155,26 @@ else
     note "See https://arianna.run for alternatives."
     exit 1
   fi
+fi
+
+# Resolve target tag.
+if [[ "$ARIANNA_VERSION" == "latest" ]]; then
+  TARGET_TAG=$(git -C "$ARIANNA_REPO_DIR" tag -l --sort=-v:refname | head -1)
+  if [[ -z "$TARGET_TAG" ]]; then
+    warn "no tags found in repo — falling back to origin/main"
+    TARGET_TAG="origin/main"
+  fi
+else
+  TARGET_TAG="$ARIANNA_VERSION"
+fi
+
+if git -C "$ARIANNA_REPO_DIR" checkout --quiet "$TARGET_TAG"; then
+  ok "checked out $TARGET_TAG"
+else
+  err "could not checkout $TARGET_TAG"
+  note "Available tags: \`git -C $ARIANNA_REPO_DIR tag -l\`"
+  note "Pin a specific version: \`ARIANNA_VERSION=v0.1.2 curl -fsSL $INSTALL_URL | bash\`"
+  exit 1
 fi
 
 # 6. global npm install

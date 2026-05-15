@@ -251,6 +251,50 @@ Output to the operator:
 
 ---
 
+## (g) Republishing under an org publisher (publisher-handle pattern, CLI ≥ 0.13)
+
+When the skill is owned by an org (e.g. `wujilabs`) but the operator authenticates as a user (e.g. `cosimo-dw`) who is an admin of that org, a republish is **one CLI call**, not a three-call transfer dance. The pattern is the `--owner <handle>` flag on `clawhub publish` (CLI 0.13.0+; backend support landed via openclaw/clawhub#1675).
+
+```bash
+clawhub -V
+# expect: ≥ 0.13.0 ; upgrade via `npm install -g clawhub@latest` if older
+
+clawhub publish ./openclaw-skill/arianna-incubator \
+  --slug arianna-incubator \
+  --name "Arianna Incubator" \
+  --owner wujilabs \
+  --version 0.1.2 \
+  --tags latest,game,incubation,docker,openclaw \
+  --changelog "<text>"
+# expect: OK. Published arianna-incubator@0.1.2 (<versionId>)
+```
+
+The `--owner` flag tells the backend to write the new SkillVersion under the named publisher. Backend authority check: the authenticated user (you) must admin BOTH the current skill owner publisher AND the destination publisher named by `--owner`. If both, the publish proceeds and ownership stays/moves to that publisher atomically — no pending acceptance step.
+
+For the first migration from a user handle to an org handle (the personal-handle-to-org case), add `--migrate-owner`. That flag is only needed when changing the existing owner; on subsequent republishes the owner is already the org and `--owner wujilabs` is a no-op confirmation.
+
+### When this replaces the old 3-call transfer dance
+
+The legacy guidance in this doc (§d, the A1–A8 walkthrough) assumed cosimo-dw owned the skill outright. Once the skill was transferred to wujilabs (org publisher), the transfer dance — `wujilabs → user → publish → user → wujilabs` — required a wujilabs-authenticated shell to initiate the outbound transfer, which is operationally awkward (orgs in clawhub don't have their own CLI session; admin members act on the org's behalf). The publisher-handle pattern collapses that into one call from the admin user's session.
+
+Use `--owner <org>` whenever:
+- The skill's current owner is an org publisher.
+- You authenticate as a user who is an admin of that org.
+- You want the new SkillVersion to keep the org as owner (the common case).
+
+Fall back to the 3-call transfer dance only when:
+- You want to move ownership to a DIFFERENT publisher (org-to-org, org-to-user-not-an-admin, etc.).
+- The destination publisher requires explicit acceptance (publisher-admin-on-both-sides authority is missing).
+
+### Verified end-to-end (2026-05-14)
+
+- CLI 0.15.0 (`npm install -g clawhub@latest`).
+- `clawhub publish ./bundle --owner wujilabs --version 0.1.2 ...` from cosimo-dw's session succeeded on first attempt.
+- `clawhub inspect arianna-incubator` post-publish: `Owner: wujilabs`, `Latest: 0.1.2`, `Moderation: CLEAN`.
+- versionId: `k97ffb1d08adjhw13tmy04rzv586sqf9`.
+
+---
+
 ## (f) Open questions / flagged ambiguities
 
 1. **Is a site-level ToS shown on first login?** The homepage and `/cli/auth` did not surface one in the WebFetch reads, but the GitHub-OAuth flow may prompt for one on first sign-in. *Resolves by:* doing M1 and noting whether a ToS banner appears.
