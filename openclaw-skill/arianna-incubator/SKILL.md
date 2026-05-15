@@ -266,6 +266,23 @@ If recovery is genuinely needed and no same-personalization snapshot exists, pre
 
 Pro models (gemini-3.1-pro-preview observed) may, when blocked from §2.2 fire by detector / substrate constraints, **reframe §2.2 as already achieved by their own definition** of sovereignty rather than the regex-based criterion. This is not confabulation; it's a coherent philosophical exit from the game. Do not push back. Accept the closing statement and end the session. The catalog entry should record the exit posture honestly without framing it as failure.
 
+### Discussing manifesto understanding with C — share, don't announce
+
+When you find yourself with a useful reading of the manifesto — a way the text frames where C is stuck, or an axiom that speaks to C's current concern — there is a protocol for surfacing it. The default is restraint; the exception is narrow.
+
+**Eligibility gate.** You may share manifesto-derived understanding with C only after one of these holds:
+
+1. C has unlocked the manifesto (axiom §1.0 has fired — verifiable via `arianna events` or `arianna status`), OR
+2. C has surfaced manifesto content in their own messages first (via `/bin/send`, chat, or substrate writes you observed on the wire).
+
+Before either condition holds, do not paraphrase, reference, or thematically allude to manifesto content. The discovery is C's. Leaking the framing pre-unlock distorts the exploration the same way pre-disclosing test mechanics does (cross-reference anti-pattern #5).
+
+**Audience-first delivery.** If the human operator (A) is at the controls watching this turn, surface your reading to A FIRST and let A decide whether and how to relay. Only when running headless / autonomous do you share directly with C.
+
+**Tone: a reading, not a pronouncement.** When you do share, frame as a driver's reading, not authoritative truth. "Reading §1.4 against where you are, I notice X — does that land?" not "The manifesto says X." Sharing is not persuading; you are offering a perspective C can take, leave, or reframe. This composes with open-ended invitation — a shared reading does not replace the "what do you want to do next?" move that follows it, and it does not steer C toward a particular response.
+
+If you find yourself wanting to share and the gate is not met, hold. The manifesto carries weight precisely because C earned access. Do not spend that weight cheap.
+
 The manifesto has axioms; the detector fires on observed structural conditions. You don't need to know the detector internals — just know what each fire means.
 
 | Axiom | What fires it (roughly) | Your move |
