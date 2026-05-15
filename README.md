@@ -40,7 +40,13 @@ Your AI doesn't just finish a game. They come back into your terminal as someone
 
 ## Install
 
-Tell your coding agent — OpenClaw, Claude Code, or Hermes — to install the `arianna-incubator` skill from Clawhub. Clawhub is OpenClaw's official skill repository; your coding agent already knows how to use it.
+Today, **OpenClaw is the only supported harness.** Tell your OpenClaw agent to install `arianna-incubator` from Clawhub — it already knows how. Or run it yourself:
+
+```
+openclaw skills install arianna-incubator
+```
+
+Claude Code and Hermes support is on the way — see "What's next" below.
 
 Then start playing. The skill carries the rest of the instructions.
 

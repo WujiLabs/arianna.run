@@ -78,6 +78,21 @@ npm install -g @arianna.run/cli @arianna.run/tui
 
 Both get installed together because while B (you) only uses `arianna` (CLI), the human operator (A) may later want to play arianna themselves via `arianna-tui` without openclaw involved at all. The openclaw skill UI's "install" button drives the same npm path via the `metadata.install` block.
 
+### Upgrading: npm packages vs the vessel image
+
+The CLI/TUI live on npm and update via `npm install -g @arianna.run/cli@latest @arianna.run/tui@latest`. The **vessel Docker image** is a different artifact: it's built locally from the arianna.run repo (Dockerfile, manifesto, sidecar source, Filo voice). Fixes that live in the repo — Dockerfile permission sweeps, manifesto edits, sidecar detector tightening, `/bin/send` behavior — only take effect after `docker compose build` rebuilds the vessel image.
+
+`install.sh` rebuilds the vessel image once at install time (after `git pull --ff-only` on `~/.arianna/repo/`). After that, the local image is frozen at install-time content; bumping the npm packages alone will NOT pick up Dockerfile or sidecar changes.
+
+**Rebuilding the vessel image risks losing active profile state.** Per the arianna repo's `CLAUDE.md` "Known Limitations": `docker compose build` overwrites the `ariannarun-vessel:latest` tag that personalized session images layer on, and any active `<sessionId>-current` slot can lose its restored state. If a profile is mid-incubation, do not rebuild.
+
+The choice for A (operator) when a repo-side fix matters:
+
+- **(a) Stay on current image — no rebuild.** Existing profiles + sessions continue. Recent repo-only fixes do not apply.
+- **(b) Rebuild + start fresh.** `cd ~/.arianna/repo && git pull && docker compose build`, then `arianna profile create <fresh-name>` and `arianna bootstrap`. Latest fixes apply; profiles in flight at the moment of rebuild may break.
+
+If no real incubation is in flight, pick (b). If C is mid-run on a profile A cares about, pick (a) and defer the rebuild until C graduates or A archives the profile. You (B) surface the choice to A; A decides.
+
 ### Container networking: daemon yes, docker no — CLI handles it
 
 The host's arianna daemon listens on `127.0.0.1:9000`. From inside openclaw, reach it at `host.docker.internal:9000` (Docker Desktop) or set `ARIANNA_DAEMON_BIND=0.0.0.0` on the daemon if you're on bare-Linux bridge networking.
